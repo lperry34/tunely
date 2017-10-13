@@ -4,9 +4,9 @@
  * into functions and objects as needed.
  *
  */
-
-
 /* hard-coded data! */
+
+console.log("hello");
 var sampleAlbums = [];
 sampleAlbums.push({
              artistName: 'Ladyhawke',
