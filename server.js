@@ -1,38 +1,35 @@
 
-var express = require('express'),
-    app = express();
+var express = require('express');
+var app = express();
+app.use(express.static(__dirname + '/public'));
 
-    var bodyParser = require('body-parser');
-    app.use(bodyParser.urlencoded({
-        extended: true
-    }));
+var controllers = require('./controllers');
 
 
-app.get('/', function homepage(req, res) {
-    res.sendFile(__dirname + '/views/index.html');
+/**********
+ * ROUTES *
+ **********/
+
+/*
+ * HTML Endpoints
+ */
+
+app.get('/', function homepage (req, res) {
+  res.sendFile(__dirname + '/views/index.html');
 });
 
-app.use(express.static('public'));
 
+/*
+ * JSON API Endpoints
+ */
 
+app.get('/api', controllers.api.index);
 
+/**********
+ * SERVER *
+ **********/
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-app.listen(process.env.PORT || 3000, function() {
-    console.log('Express server is up and running on http://localhost:3000/');
+// listen on port 3000
+app.listen(process.env.PORT || 3000, function () {
+  console.log('Express server is running on http://localhost:3000/');
 });
